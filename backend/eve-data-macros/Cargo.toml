@@ -12,3 +12,7 @@ proc-macro = true
 eve_data_core = { path = "../eve-data-core" }
 syn = "*"
 quote = "*"
+
+[[bin]]
+name = "convert_sde_to_sqlite"
+path = "convert_sde_to_sqlite.rs"
