@@ -44,24 +44,19 @@ const LegalNotices = () => {
             property of CCP hf. All artwork, screenshots, characters, vehicles, storylines, world
             facts or other recognizable features of the intellectual property relating to these
             trademarks are likewise the intellectual property of CCP hf. CCP hf. has granted
-            permission to The Outuni Project to use EVE Online and all associated logos and designs
+            permission to Imperium Incursions to use EVE Online and all associated logos and designs
             for promotional and information purposes on its website but does not endorse, and is not
-            in any way affiliated with, The Outuni Project. CCP is in no way responsible for the
+            in any way affiliated with, Imperium Incursions. CCP is in no way responsible for the
             content on or functioning of this website, nor can it be liable for any damage arising
             from the use of this website.
           </p>
 
-          <H3>TOP Logo:</H3>
-          <p style={{ paddingBottom: "10px" }}>
-            The Website and Discord Logo and the favicon are designed by Spartalicious.
-          </p>
-
-          <H3>Waitlist</H3>
+          <H3>Source Code</H3>
           <p>
-            The source code for The Outuni Project is available under the MIT license. The source
-            code and fulltext for this license can be found{" "}
-            <A href="https://github.com/samuelgrant/top-waitlist/" target="_blank">
-              here
+            The original TDF Waitlist developed by <A href="https://github.com/TvdW/tdf-waitlist" target="_blank" rel="noreferrer">TvdW</A>.
+            This version was forked from The Outuni Project. Source code is available under the MIT license on&nbsp;
+            <A href="https://github.com/Aerion-Spiritus/incursion-waitlist-august/" target="_blank" rel="noreferrer">
+              GitHub
             </A>
             .
           </p>
@@ -121,7 +116,7 @@ const TeamDirectory = () => {
 const Footer = () => {
   return (
     <FooterDom>
-      <p>The Outuni Project &copy; {new Date().getFullYear()}</p>
+      <p>Imperium Incursions &copy; {new Date().getFullYear()}</p>
       <ul>
         <li>
           <LegalNotices />
@@ -130,7 +125,7 @@ const Footer = () => {
           <TeamDirectory />
         </li>
         <li>
-          <A href="https://github.com/the-outuni-project/legacy-waitlist" target="_blank">
+          <A href="https://github.com/Aerion-Spiritus/incursion-waitlist-august" target="_blank">
             Source Code
           </A>
         </li>

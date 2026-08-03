@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../contexts";
 import logoImage from "./logo.png";
@@ -7,7 +7,7 @@ import { InputGroup, Select, NavButton, AButton } from "../Components/Form";
 import BrowserNotification from "../Components/Event";
 import ThemeSelect from "../Components/ThemeSelect";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiscord, faTeamspeak } from "@fortawesome/free-brands-svg-icons";
+import { faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { NavLinks, MobileNavButton, MobileNav } from "./Navigation";
 
@@ -44,8 +44,8 @@ NavBar.LogoLink = styled(NavLink).attrs((props) => ({
   }
 `;
 NavBar.Logo = styled.img`
-  width: 150px;
-  filter: ${(props) => props.theme.logo.filter};
+  width: 90px;
+  
 `;
 NavBar.Menu = styled.div`
   display: flex;
@@ -93,21 +93,6 @@ NavBar.Name = styled.div`
   }
 `;
 
-const Teamspeak = () => {
-  const authContext = useContext(AuthContext);
-
-  return (
-    <AButton
-      title="Join our Teamspeak Server"
-      href={`ts3server://42outunis.com${
-        authContext?.current ? `?nickname=${authContext.current.name}` : ""
-      }`}
-    >
-      <FontAwesomeIcon icon={faTeamspeak} />
-    </AButton>
-  );
-};
-
 export function Menu({ onChangeCharacter, theme, setTheme, sticker, setSticker }) {
   const [isOpenMobileView, setOpenMobileView] = React.useState(false);
   return (
@@ -117,7 +102,7 @@ export function Menu({ onChangeCharacter, theme, setTheme, sticker, setSticker }
           <NavBar.Header>
             <MobileNavButton isOpen={isOpenMobileView} setIsOpen={setOpenMobileView} />
             <NavBar.LogoLink to="/">
-              <NavBar.Logo src={logoImage} alt="The Outuni Project" />
+              <NavBar.Logo src={logoImage} alt="Imperium Incursions" />
             </NavBar.LogoLink>
           </NavBar.Header>
           <NavBar.Menu>
@@ -150,8 +135,7 @@ export function Menu({ onChangeCharacter, theme, setTheme, sticker, setSticker }
                 </>
               )}
               <InputGroup fixed>
-                <Teamspeak />
-                <AButton title="Discord" href="https://discord.gg/D8pkZhE8DD">
+                <AButton title="Discord" href="https://auth.goonfleet.com/Manage/Discord">
                   <FontAwesomeIcon icon={faDiscord} />
                 </AButton>
                 <BrowserNotification />

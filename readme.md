@@ -3,7 +3,7 @@
 
 # TOP Waitlist Fork
 
-A temporary waitlist for The Outuni Project.
+A temporary waitlist for Imperium Incursions.
 
 ### Contributing
 Report bugs by opening a GitHub issue, send an Eve Mail to Nyx Viliana. Security issues should be reported to an Nyx Viliana. 
