@@ -14,7 +14,6 @@ mod modules;
 mod notes;
 mod pilot;
 mod search;
-mod skillplans;
 mod reports;
 mod skills;
 mod sse;
@@ -43,7 +42,6 @@ pub fn routes() -> Vec<rocket::Route> {
         healthcheck::routes(),
         implants::routes(),
         notes::routes(),
-        skillplans::routes(),
         fitcheck::routes(),
         fittings::routes(),
         reports::routes()

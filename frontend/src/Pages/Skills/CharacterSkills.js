@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import SkillRow from "./SkillRow";
-import A from "../../Components/A";
 import CopyToSkillplan from "./EveSkillPlan";
 
 const SkillSheet = styled.div`
@@ -87,9 +86,6 @@ const CharacterSkills = ({ mastery, selectedHull, skills, hidePlans = false }) =
             skillGroups={skillGroups}
             requirements={requirements}
           />
-          <A href="/skills/plans" style={{ marginLeft: '20px' }}>
-            Legacy Skill Plans
-          </A>
         </SkillWrapper>
       )}
       <SkillSheet>

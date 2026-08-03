@@ -65,11 +65,6 @@ pub fn build_plan(plan: &SkillPlan) -> Result<Vec<LevelPair>, SkillPlanError> {
     Ok(skills)
 }
 
-pub fn load_plans_from_file() -> Vec<SkillPlan> {
-    let file: SkillPlanFile = yamlhelper::from_file("./data/skillplan.yaml");
-    file.plans
-}
-
 #[derive(Debug, Default)]
 struct DepEntry {
     dependees: Vec<LevelPair>,
