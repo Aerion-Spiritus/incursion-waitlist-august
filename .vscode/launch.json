@@ -1,0 +1,37 @@
+{
+  "version": "0.2.0",
+  "compounds": [
+    {
+      "name": "Website",
+      "configurations": ["API","User Interface"]
+    }
+  ],
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "API",
+      "program": "${workspaceFolder}/backend/target/debug/tdf_wl",
+      "preLaunchTask": "Build API",
+      "args": [
+        "--no-default-features",
+        "--features=mysql"
+      ],
+      "cwd": "${workspaceFolder}/backend",
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "User Interface",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "run",
+        "start"
+      ],      
+      "skipFiles": [
+        "**<node_internals>/**"
+      ],
+      "cwd": "${workspaceFolder}/frontend"
+    }
+  ]
+}

@@ -3,9 +3,9 @@
   "options": {
     "env": {
       "DATABASE_ENGINE": "mysql",
-      "DATABASE_URL": "mysql://dbuser:dbpassword@localhost/dbname?ssl-mode=disabled"
+      "DATABASE_URL": "mysql://<username>:<password>@localhost/imperium_incursions?ssl-mode=disabled"
     },
-    "cwd": "${workspaceFolder}"
+    "cwd": "${workspaceFolder}/backend"
   },
   "tasks": [
     {
@@ -17,7 +17,7 @@
         "--release",
         "--no-default-features",
         "--features=mysql"
-      ],
+      ]
     }
   ]
 }
