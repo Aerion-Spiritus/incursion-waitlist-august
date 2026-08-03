@@ -14,7 +14,7 @@ pub struct DNAFitting {
 struct FittingResponse {
     fittingdata: Option<Vec<DNAFitting>>,
     notes: Option<Vec<FittingNote>>,
-    rules: Option<Vec<TypeID>>,
+    categories: Option<BTreeMap<String, Vec<i32>>>
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -37,25 +37,30 @@ fn load_notes_from_file() -> Vec<FittingNote> {
 async fn fittings() -> Result<Json<FittingResponse>, Madness> {
     let mut fittingformatted = BTreeMap::new();
     let mut id = 0;
+
     for fit in crate::data::fits::get_fits().values().flatten() {
         if fit.hidden {
             continue;
         }
+
         let fitname = fit.name.clone();
         let dna = fit.fit.to_dna().unwrap();
+
         fittingformatted.entry(id).or_insert_with(|| DNAFitting {
             name: fitname,
             dna: dna.clone(),
         });
         id += 1;
     }
-    let mut logirules = Vec::new();
 
-    for rule in crate::data::categories::rules() {
-        if rule.1 == "logi" {
-            logirules.push(rule.0)
-        }
+    // Inform the UI about the relationship between typeIDs and categories
+    let mut categories: BTreeMap<String, Vec<i32>> = BTreeMap::new();
+    for (type_id, foo) in crate::data::categories::rules() {
+        categories.entry(foo.clone())
+        .or_insert_with(Vec::new)
+        .push(type_id.clone());        
     }
+
     Ok(Json(FittingResponse {
         fittingdata: Some(
             fittingformatted
@@ -64,7 +69,7 @@ async fn fittings() -> Result<Json<FittingResponse>, Madness> {
                 .collect(),
         ),
         notes: Some(load_notes_from_file()),
-        rules: Some(logirules),
+        categories: Some(categories)
     }))
 }
 

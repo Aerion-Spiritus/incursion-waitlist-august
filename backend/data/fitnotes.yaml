@@ -3,53 +3,19 @@
 
 notes:
   # Tier message
-  - name: Starter
+  - name: Logi
     description: >
-      These **DPS** ships are the only ones you can fly with all **Armor Compensation** skills at level 2, all others require at least 4. **Replace a Target Painter or Tracking Computer** with the **Micro Jump drive** when able.
-  - name: Elite
-    description: >
-      **These fits are eligible for the [Elite and Elite Gold badges]()**.
-  - name: Logistics
-    description: >
-      There are a limited number of spots in fleet for logistics ships. Boosters can only be flown by alts and are not guaranteed a payout.
+      There are limited spots for logistics ships in fleet. Pilots are encouraged to bring a [DPS option](/fits?Tier=DPS) to focus.
 
   # Ship specific notes
-  - name: Basic Oneiros
+  - name: Incursions 0.0 Apocalypse Newbee 
     description: >
-      Skill exception: Logistics Cruiser 4
+      The squad offers an Apocalypse handout program for new pilots. [Click here](https://goonfleet.com/index.php/topic/383879-official-newbee-apocalypse-handout/) for more information.
 
-  - name: TOP ECM Blackbird Antigank
+  - name: Incursions 0.0 Maller Newbee
     description: >
-      Used at FC discretion, alts can use this ship to provide protection against gankers.
+      A limited number of handout Mallers may be available. Ask an FC in Discord for more information.
 
-  ## Marauders
-  - name: TOP Paladin Basic (TII Guns)
+  - name: Incursions 0.0 Vindicator
     description: >
-      This fit requires perfect fitting skills. If you lack the CPU to use this fit, consider temporarily getting an 'EE-604' or upgrading one of your reps to a 'Peace' Large Remote Armor Repairer.
-
-  ## Nestors
-  - name: Elite Ascendancy Nestor
-    description: >
-      Implant Required: EM-806. You are required to be approved logi (Logistics Specialist) to fly this ship.
-  - name: Elite Hybrid Nestor
-    description: >
-      Implant Required: EM-806. You are required to be approved logi (Logistics Specialist) to fly this ship.
-  - name: TOP Nestor Antigank
-    description: >
-      The EM-806 implant is required, the RA-706 and HS-906 are recommended all other implants are optional. Consider checking the regional market for event drugs which improve your armour HP or resists.
-
-  ## Vindicators
-  - name: TOP Vindicator Elite Hybrid
-    description: >
-      You need to be a Web Specialist to use this ship after 130h.
-  - name: TOP Vindicator Elite
-    description: >
-      You need to be a Web Specialist to use this ship after 130h.
-
-  - name: TOP Vindicator T1 Antigank
-    description: >
-      Vindicators may not be allowed during anti-gank fleets.
-
-  - name: TOP Vindicator T2 Antigank
-    description: >
-      Vindicators may not be allowed during anti-gank fleets.
+      There are limited spots for Vindicators in fleet. Pilots are encouraged to bring another DPS ship to focus.

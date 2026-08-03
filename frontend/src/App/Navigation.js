@@ -85,7 +85,7 @@ export function NavLinks({ whoami }) {
       <Links exact to="/">
         Waitlist
       </Links>
-      <Links exact to="/fits">
+      <Links exact to="/fits?Tier=DPS">
         Fits
       </Links>
       {whoami && (
