@@ -92,10 +92,10 @@ function decodeData(encoded) {
 function createPayoutTable() {
   var result = {};
   for (const [siteType, payout, lp, normalGrid] of [
-    ["Mothership (highsec)", 63000000, 14000, 80],
-    ["HQ (highsec)", 31500000, 7000, 40],
-    ["AS (highsec)", 18200000, 3500, 20],
-    ["VG (highsec)", 10395000, 1400, 10],
+    ["Mothership (Nullsec)", 90000000, 20000, 120],
+    ["HQ (Nullsec)", 45000000, 10000, 60],
+    ["AS (Nullsec)", 26000000, 5000, 30],
+    ["VG (Nullsec)", 15000000, 2000, 15],
   ]) {
     for (var overgrid = 0; overgrid < 11; overgrid++) {
       const payoutFactor = 1 - 0.0725 * overgrid - 0.0025 * overgrid ** 2;
