@@ -13,9 +13,6 @@ const globals = {
 const theme = {
   Dark: _.merge({}, globals, {
     base: "dark",
-    logo: {
-      filter: "invert(1)",
-    },
     colors: {
       background: "#1A1B1E",
       text: "#cccccc",
@@ -157,23 +154,6 @@ const theme = {
     },
   }),
 };
-
-theme.Purpleholic = _.merge({}, theme.Dark, {
-  colors: {
-    background: "#290052",
-    accent1: "#380070",
-    accent2: "#4f009e",
-    accent3: "#8c1aff",
-    accent4: "#bf80ff",
-
-    secondary: {
-      color: "#55008a",
-      text: "white",
-      accent: "#6e00b3",
-      disabled: "#31084a",
-    },
-  },
-});
 
 theme["Deuteranopia"] = _.merge({}, theme.Dark, {
   colors: {
