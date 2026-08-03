@@ -23,10 +23,4 @@
         <loc>https://42outunis.com/isk-h/calc</loc>
         <changefreq>never</changefreq>
     </url>
-
-    <url>
-        <loc>https://wiki.42outunis.com</loc>
-        <changefreq>daily</changefreq>
-        <priority>0.6</priority>
-    </url>
 </urlset>

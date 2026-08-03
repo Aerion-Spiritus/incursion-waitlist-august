@@ -175,14 +175,6 @@ fn build_access_levels() -> BTreeMap<String, BTreeSet<String>> {
     build_level(
         &mut result,
         "user",
-        "Wiki Team",
-        vec![
-            "wiki-editor"
-        ],
-    );
-    build_level(
-        &mut result,
-        "user",
         "Trainee",
         vec![
             "fleet-configure",
@@ -232,7 +224,6 @@ fn build_access_levels() -> BTreeMap<String, BTreeSet<String>> {
         "Instructor",
         "Leadership",
         vec![
-            "commanders-manage:Wiki Team",
             "commanders-manage:Instructor",
             "commanders-manage:Leadership"
         ],

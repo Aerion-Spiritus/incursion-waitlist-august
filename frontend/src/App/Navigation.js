@@ -6,26 +6,6 @@ import { MobileButton } from "../Components/Form";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const ExternalLink = styled.a`
-  padding: 1em;
-  color: ${(props) => props.theme.colors.accent4};
-  text-decoration: none;
-  &:hover {
-    color: ${(props) => props.theme.colors.text};
-    background-color: ${(props) => props.theme.colors.accent1};
-    border-radius: 2px;
-  }
-  &.active {
-    color: ${(props) => props.theme.colors.active};
-  }
-  @media (max-width: 480px) {
-    &.active {
-      background-color: ${(props) => props.theme.colors.accent2};
-      border-radius: 4px;
-    }
-  }
-`;
-
 const Links = styled(NavLink).attrs((props) => ({
   activeClassName: "active",
 }))`
@@ -108,9 +88,6 @@ export function NavLinks({ whoami }) {
       <Links exact to="/fits">
         Fits
       </Links>
-      <ExternalLink href={`https://wiki.${window.location.host}`} target="_blank">
-        Guides
-      </ExternalLink>
       {whoami && (
         <>
           <Links exact to="/pilot">

@@ -10,7 +10,6 @@ import CommanderModal from "../FC/commanders/CommanderModal";
 import CharacterBadgeModal from "../FC/badges/CharacterBadgeModal";
 import BadgeIcon, { icons } from "../../Components/Badge";
 import styled from "styled-components";
-import WikiPassword from "../FC/WikiPassword";
 
 import { AccountBannedBanner } from "../FC/bans/AccountBanned";
 import { ActivitySummary } from "./ActivitySummary";
@@ -253,7 +252,7 @@ function PilotDisplay({ authContext }) {
           />
         </Col>
         <Col xs={4} md={2}>
-          {(authContext?.access['waitlist-tag:TRAINEE'] || authContext?.access['wiki-editor']) && authContext.current.id === characterId && (
+          {authContext?.access['waitlist-tag:TRAINEE'] && authContext.current.id === characterId && (
             <ControlButtons>
               <div>Account Actions</div>
               <div>
@@ -263,7 +262,6 @@ function PilotDisplay({ authContext }) {
                     <FontAwesomeIcon fixedWidth icon={faExternalLinkAlt} />
                   </NavButton>
                 )}
-                <WikiPassword />
               </div>
             </ControlButtons>
           )}

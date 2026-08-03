@@ -196,7 +196,7 @@ async fn public_directory(
 async fn assignable(account: AuthenticatedAccount) -> Result<Json<Vec<&'static str>>, Madness> {
     account.require_access("commanders-manage")?;
 
-    let role_order = vec!["Wiki Team", "Trainee", "FC", "Instructor", "Leadership"];
+    let role_order = vec!["Trainee", "FC", "Instructor", "Leadership"];
 
     let mut options = Vec::new();
     for scope in account.access.into_iter() {

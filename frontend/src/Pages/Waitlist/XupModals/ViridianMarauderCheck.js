@@ -65,7 +65,7 @@ const VirdianMarauderCheck = ({ onPass }) => {
     }
   }
 
-  const bastionGuideUrl = `https://wiki.${window.location.hostname}/guides/bastion`;
+  const bastionGuideUrl = `https://goonfleet.com/index.php/topic/384020-guide-how-to-fly-your-ship-doctrine-00-wip/`;
   
   return !ready ? (
     <div style={{ margin: 'auto' }}>

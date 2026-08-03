@@ -24,6 +24,3 @@ min_in_fleet = 8
 [skill_updater]
 enable = true
 runtime = 86400
-
-[dokuwiki]
-mail_domain = "your-awesome-domain.org"

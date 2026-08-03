@@ -95,9 +95,6 @@ const ValidateFit = ({ alt, fits, callback, setAlt, setFits }) => {
         </FormGroup>
 
         <Button variant="success" disabled={pending}>X UP</Button>
-        {/* <A href={`https://wiki.${window.location.host}/guides/waitlist`} target="_blank">
-          How do I join the waitlist?
-        </A> */}
       </form>
 
       <div id="implants">
