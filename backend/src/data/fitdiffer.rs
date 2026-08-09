@@ -92,7 +92,10 @@ impl FitDiffer {
         }
 
         let extra = extra.into_iter().filter(|(_k, v)| *v > 0).collect();
-        let missing = missing.into_iter().filter(|(_k, v)| *v > 0).collect();
+        // FIXME: Mobile depots were always flagged as missing, even when present. Filter for this error
+        let missing = missing.into_iter().filter(|(k, v)| *v > 0 && *k != 33474).collect();
+
+        
 
         SectionDiff {
             missing,
