@@ -28,8 +28,8 @@ pub struct FitResult {
 
 #[post("/api/fit-check", data = "<input>")]
 async fn fitcheck(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     input: Json<XupRequest>,
 ) -> Result<Json<Vec<FitResult>>, Madness> {
     let fits: Vec<Fitting> = Fitting::from_eft(&input.eft)?;

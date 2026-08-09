@@ -143,9 +143,9 @@ struct FleetMembersMember {
 
 #[get("/api/fleet/members?<character_id>")]
 async fn fleet_members(
+    app: &rocket::State<Application>,
     account: AuthenticatedAccount,
     character_id: i64,
-    app: &rocket::State<Application>,
 ) -> Result<Json<FleetMembersResponse>, Madness> {
     account.require_access("fleet-view")?;
     authorize_character(app.get_db(), &account, character_id, None).await?;

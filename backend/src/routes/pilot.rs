@@ -11,9 +11,9 @@ use crate::{
 
 #[get("/api/pilot/info?<character_id>")]
 async fn pilot_info(
-    account: AuthenticatedAccount,
-    character_id: i64,
     app: &rocket::State<app::Application>,
+    account: AuthenticatedAccount,
+    character_id: i64,    
 ) -> Result<Json<CharacterAndLevel>, Madness> {
     authorize_character(&app.db, &account, character_id, Some("pilot-view")).await?;
 
@@ -56,9 +56,9 @@ async fn pilot_info(
 
 #[get("/api/pilot/alts?<character_id>")]
 async fn alt_info(
+    app: &rocket::State<app::Application>,
     account: AuthenticatedAccount,
     character_id: i64,
-    app: &rocket::State<app::Application>,
 ) -> Result<Json<Vec<Character>>, Madness> {
     account.require_access("waitlist-tag:HQ-FC")?;
 

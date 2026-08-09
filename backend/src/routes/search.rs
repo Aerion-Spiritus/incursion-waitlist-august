@@ -32,9 +32,9 @@ struct EsiSearchResponse {
 
 #[get("/api/search?<query>")]
 async fn query(
-    query: String,
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    query: String,
+    account: AuthenticatedAccount,    
 ) -> Result<Json<SearchResponse>, Madness> {
     account.require_access("search")?;
 
@@ -60,8 +60,8 @@ async fn query(
 // GET /latest/characters/:characterId/search
 #[post("/api/search", data = "<req_body>")]
 async fn esi_search(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,    
     req_body: Json<EsiSearchRequest>,
 ) -> Result<Json<Vec<i32>>, Madness> {
     account.require_access("fleet-invite")?; // Any FC has the search scope.

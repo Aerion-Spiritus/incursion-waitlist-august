@@ -94,8 +94,8 @@ async fn get_active_announcements(app: &Application) -> Result<Vec<AnnouncementP
 
 #[get("/api/v2/announcements")]
 async fn list(
+    app: &rocket::State<Application>,
     _account: AuthenticatedAccount,
-    app: &rocket::State<Application>
 ) -> Result<Json<Vec<AnnouncementPayload>>, Madness> {
     let payloads = get_active_announcements(app).await?;
     return Ok(Json(payloads));
@@ -103,8 +103,8 @@ async fn list(
 
 #[post("/api/v2/announcements", data = "<body>")]
 async fn create(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     body: Json<RequestPayload>,
 ) -> Result<&'static str, Madness> {
     account.require_access("waitlist-tag:HQ-FC")?;
@@ -138,8 +138,8 @@ async fn create(
 
 #[put("/api/v2/announcements/<announcement_id>", data = "<body>")]
 async fn update(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     announcement_id: i64,
     body: Json<RequestPayload>,
 ) -> Result<&'static str, Madness> {
@@ -198,8 +198,8 @@ async fn update(
 
 #[delete("/api/v2/announcements/<announcement_id>")]
 async fn revoke(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     announcement_id: i64,
 ) -> Result<&'static str, Madness> {
     account.require_access("waitlist-tag:HQ-FC")?;

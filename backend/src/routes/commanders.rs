@@ -50,8 +50,8 @@ struct CommanderList {
 
 #[get("/api/commanders")]
 async fn list(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
 ) -> Result<Json<CommanderList>, Madness> {
     account.require_access("commanders-view")?;
 
@@ -109,8 +109,8 @@ async fn list(
 
 #[post("/api/commanders", data = "<body>")]
 async fn assign(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     body: Json<RequestPayload>,
 ) -> Result<&'static str, Madness> {
     account.require_access("commanders-manage")?;
@@ -179,6 +179,7 @@ async fn assign(
 #[get("/api/commanders/public")]
 async fn public_directory(
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,    
 ) -> Result<Json<Vec<CharacterWithRole>>, Madness> {
     let team = sqlx::query!(
         "SELECT role, fc.id, fc.name FROM admin JOIN `character` AS fc ON character_id = fc.id ORDER BY role"
@@ -227,8 +228,8 @@ async fn assignable(account: AuthenticatedAccount) -> Result<Json<Vec<&'static s
 
 #[get("/api/commanders/<character_id>")]
 async fn lookup(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     character_id: i64,
 ) -> Result<String, Madness> {
     account.require_access("commanders-manage")?;
@@ -246,8 +247,8 @@ async fn lookup(
 
 #[delete("/api/commanders/<character_id>")]
 async fn revoke(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     character_id: i64,
 ) -> Result<&'static str, Madness> {
     account.require_access("commanders-manage")?;

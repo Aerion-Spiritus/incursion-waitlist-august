@@ -20,8 +20,8 @@ struct ReportRow {
 
 #[get("/api/reports")]
 async fn get_reports(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,    
 ) -> Result<Json<Vec<ReportRow>>, Madness> {
     account.require_access("reports-view")?;
 

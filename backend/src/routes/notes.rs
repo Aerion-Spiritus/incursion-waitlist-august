@@ -21,9 +21,9 @@ struct NotesList {
 
 #[get("/api/notes?<character_id>")]
 async fn list_notes(
+    app: &rocket::State<app::Application>,
     account: AuthenticatedAccount,
     character_id: i64,
-    app: &rocket::State<app::Application>,
 ) -> Result<Json<NotesList>, Madness> {
     account.require_access("notes-view")?;
 
@@ -61,8 +61,8 @@ struct AddNoteInput {
 
 #[post("/api/notes/add", data = "<input>")]
 async fn add_note(
-    account: AuthenticatedAccount,
     app: &rocket::State<app::Application>,
+    account: AuthenticatedAccount,    
     input: Json<AddNoteInput>,
 ) -> Result<&'static str, Madness> {
     account.require_access("notes-add")?;

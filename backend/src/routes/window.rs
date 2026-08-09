@@ -21,8 +21,8 @@ struct Empty {}
 
 #[post("/api/open_window", data = "<input>")]
 async fn open_window(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     input: Json<OpenWindowRequest>,
 ) -> Result<(), Madness> {
     authorize_character(app.get_db(), &account, input.character_id, None).await?;

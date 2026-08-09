@@ -18,8 +18,8 @@ struct EsiResponse {
 
 #[get("/api/v2/bans")]
 async fn list(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
 ) -> Result<Json<Vec<Ban>>, Madness> {
     account.require_access("bans-manage")?;
 
@@ -75,8 +75,8 @@ async fn list(
 
 #[post("/api/v2/bans", data = "<req_body>")]
 async fn create(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     req_body: Json<Ban>,
 ) -> Result<&'static str, Madness> {
     account.require_access("bans-manage")?;
@@ -141,8 +141,8 @@ async fn create(
 
 #[get("/api/v2/bans/<character_id>")]
 async fn character_history(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     character_id: i64,
 ) -> Result<Json<Vec<Ban>>, Madness> {
     account.require_access("bans-manage")?;
@@ -156,8 +156,8 @@ async fn character_history(
 
 #[patch("/api/v2/bans/<ban_id>", data = "<req_body>")]
 async fn update(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     ban_id: i64,
     req_body: Json<Ban>,
 ) -> Result<&'static str, Madness> {
@@ -212,8 +212,8 @@ async fn update(
 
 #[delete("/api/v2/bans/<ban_id>")]
 async fn revoke(
-    account: AuthenticatedAccount,
     app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
     ban_id: i64,
 ) -> Result<&'static str, Madness> {
     account.require_access("bans-manage")?;
