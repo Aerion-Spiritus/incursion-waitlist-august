@@ -63,7 +63,9 @@ fn make_preload() -> ModuleResponse {
 }
 
 #[get("/api/module/preload")]
-fn preload() -> Json<&'static ModuleResponse> {
+fn preload(
+    _account: AuthenticatedAccount
+) -> Json<&'static ModuleResponse> {
     Json(&PRELOAD)
 }
 

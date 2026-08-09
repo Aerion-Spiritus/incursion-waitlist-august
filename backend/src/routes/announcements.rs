@@ -93,7 +93,10 @@ async fn get_active_announcements(app: &Application) -> Result<Vec<AnnouncementP
 }
 
 #[get("/api/v2/announcements")]
-async fn list(app: &rocket::State<Application>) -> Result<Json<Vec<AnnouncementPayload>>, Madness> {
+async fn list(
+    _account: AuthenticatedAccount,
+    app: &rocket::State<Application>
+) -> Result<Json<Vec<AnnouncementPayload>>, Madness> {
     let payloads = get_active_announcements(app).await?;
     return Ok(Json(payloads));
 }
