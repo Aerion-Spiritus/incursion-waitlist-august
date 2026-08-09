@@ -48,9 +48,8 @@ export function Routes() {
       <Route exact path="/">
         {<AuthenticatedRoute component={<Waitlist />} loginRequired />}
       </Route>
-
       <Route exact path="/fits">
-        <Fits />
+        <AuthenticatedRoute component={<Fits />} loginRequired />
       </Route>
       <Route exact path="/isk-h">
         <ISKh />

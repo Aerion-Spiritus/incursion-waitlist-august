@@ -1,4 +1,4 @@
-use crate::data::yamlhelper;
+use crate::{core::auth::AuthenticatedAccount, data::yamlhelper};
 use crate::util::madness::Madness;
 use eve_data_core::TypeID;
 use rocket::serde::json::Json;
@@ -34,7 +34,9 @@ fn load_notes_from_file() -> Vec<FittingNote> {
 }
 
 #[get("/api/fittings")]
-async fn fittings() -> Result<Json<FittingResponse>, Madness> {
+async fn fittings(
+    _account: AuthenticatedAccount
+) -> Result<Json<FittingResponse>, Madness> {
     let mut fittingformatted = BTreeMap::new();
     let mut id = 0;
 
