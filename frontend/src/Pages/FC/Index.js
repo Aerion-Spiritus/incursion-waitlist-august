@@ -6,7 +6,6 @@ import { Card, CardArray, CardMargin } from "../../Components/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChartLine,
-  faShieldAlt,
   faUserShield,
   faBullhorn,
   faBan,
@@ -44,9 +43,6 @@ export function FCMenu() {
         )}
         {authContext && authContext.access["bans-manage"] && (
           <GuideCard slug="bans" name="Bans" icon={faBan} />
-        )}
-        {authContext && authContext.access["badges-manage"] && (
-          <GuideCard slug="badges" name="Badges" icon={faShieldAlt} />
         )}
         {authContext && authContext.access["commanders-view"] && (
           <GuideCard slug="commanders" name="Commanders" icon={faUserShield} />

@@ -5,7 +5,6 @@ import { AuthContext } from "../contexts";
 
 import { AuthStart, AuthCallback, AuthLogout } from "../Pages/Auth";
 import AnnouncementsPage from "../Pages/FC/Announcements";
-import BadgesPage from "../Pages/FC/Badges";
 import BansPage from "../Pages/FC/Bans";
 import CommandersPage from "../Pages/FC/Commanders";
 import { FCMenu } from "../Pages/FC/Index";
@@ -71,9 +70,6 @@ export function Routes() {
       </Route>
       <Route exact path="/fc/announcements">
         <AuthenticatedRoute component={<AnnouncementsPage />} access="waitlist-tag:HQ-FC" />
-      </Route>
-      <Route exact path="/fc/badges">
-        <AuthenticatedRoute component={<BadgesPage />} access="badges-manage" />
       </Route>
       <Route exact path="/fc/bans">
         <AuthenticatedRoute component={<BansPage />} access="bans-manage" />

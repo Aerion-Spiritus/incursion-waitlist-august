@@ -110,10 +110,6 @@ impl<'a> FitChecker<'a> {
 
         if skill_tier == "starter" {
             self.tags.insert("STARTER-SKILLS");
-        } else if skill_tier == "gold" {
-            self.tags.insert("GOLD-SKILLS");
-        } else if skill_tier == "elite" {
-            self.tags.insert("ELITE-SKILLS");
         }
 
         Ok(())
@@ -139,33 +135,21 @@ impl<'a> FitChecker<'a> {
     }
 
     fn check_logi_implants(&mut self) {
-        if self.fit.hull == type_id!("Nestor") && !self.pilot.implants.contains(&type_id!("% EM-806"))
-        {
-            self.approved = false;
-            self.tags.insert("NO-EM-806");
-        }
+
     }
 
     fn check_fit(&mut self) {
         if let Some((doctrine_fit, mut diff)) = fitmatch::find_fit(self.fit) {
             self.doctrine_fit = Some(doctrine_fit);
 
-            if doctrine_fit.name.contains("Antigank") {
-                // For ANTIGANK, we consider all upgraded mods actually downgrades, since price is an issue
-                diff.module_downgraded.append(&mut diff.module_upgraded);
-                self.tags.insert("ANTIGANK");
-            }
-
+            
             let fit_ok = diff.module_downgraded.is_empty() && diff.module_missing.is_empty();
 
             if !(diff.cargo_missing.is_empty() && fit_ok) {
                 self.approved = false;
             }
-            if doctrine_fit.name.contains("Starter") {
+            if doctrine_fit.name.contains("Newbee") {
                 self.tags.insert("STARTER-FIT");
-            }
-            if fit_ok && doctrine_fit.name.contains("Elite") || doctrine_fit.name.contains("Web Specialist") {
-                self.tags.insert("ELITE-FIT");
             }
 
             self.analysis = Some(PubAnalysis {
@@ -239,53 +223,7 @@ impl<'a> FitChecker<'a> {
     }
 
     fn check_time_in_fleet(&mut self) {
-        let pilot_is_elite = self.tags.contains("ELITE")
-        || self.tags.contains("ELITE-GOLD")
-        || self.tags.contains("WEB")
-        || self.tags.contains("BASTION");
-
-        let has_t2_blaster = self.fit.modules.get(&type_id!("Neutron Blaster Cannon II")).copied().unwrap_or(0) > 0;
-        let has_t2_lasers = self.fit.modules.get(&type_id!("Mega Pulse Laser II")).copied().unwrap_or(0) > 0;
-
-        // Oneiros pilots only have one upgrade milestone. Elite by 105H
-        if self.fit.hull == type_id!("Oneiros") {
-            if self.pilot.time_in_fleet >= (105 * 3600) && !pilot_is_elite {
-                self.tags.insert("ELITE-HOURS-REACHED");
-            }
-        }
-        // The Megathron and N. Apoc pilots only have one upgrade milestone. Get out of the hull by 22H
-        else if self.fit.hull == type_id!("Megathron") || self.fit.hull == type_id!("Apocalypse Navy Issue") {
-            if self.pilot.time_in_fleet >= (22 * 3600) {
-              self.tags.insert("UPGRADE-HOURS-REACHED");
-            }
-        }
-        // All other pilots are subject to multiple checks; however, we only want to check DPS ships.
-        else if self.fit.hull == type_id!("Kronos") || self.fit.hull == type_id!("Nightmare") || self.fit.hull == type_id!("Paladin") || self.fit.hull == type_id!("Vindicator") {
-            if self.pilot.time_in_fleet >= (220 * 3600) && !pilot_is_elite {
-                self.tags.insert("ELITE-HOURS-REACHED");
-            }
-            else if self.pilot.time_in_fleet >= (130 * 3600) {
-                // Vindicator requires the Web Badge by 130H
-                if self.fit.hull == type_id!("Vindicator") {
-                    if !self.badges.contains(&String::from("WEB")) {
-                        self.tags.insert("UPGRADE-HOURS-REACHED");
-                    }
-                // and Marauders require T2 guns
-                } else if !((self.fit.hull == type_id!("Kronos") && has_t2_blaster) || (self.fit.hull == type_id!("Paladin") && has_t2_lasers)) {
-                    self.tags.insert("UPGRADE-HOURS-REACHED");
-                }
-            }
-            // By 85H the pilot must be in a marauder or have T2 guns
-            else if self.pilot.time_in_fleet >= (85 * 3600) {
-                if !(self.fit.hull == type_id!("Kronos") || self.fit.hull == type_id!("Paladin") || has_t2_blaster || has_t2_lasers) {
-                    self.tags.insert("UPGRADE-HOURS-REACHED");
-                }
-            }
-        }
-
-        if self.tags.contains("ELITE-HOURS-REACHED") || self.tags.contains("UPGRADE-HOURS-REACHED") {
-            self.approved = false;
-        }
+       
     }
 
     fn check_fit_implants_reqs(&mut self) {
@@ -330,21 +268,6 @@ impl<'a> FitChecker<'a> {
                 // full amulet is still elite on hybrid fit
                 if set_tag == "SAVIOR" {
                     self.tags.insert("SAVIOR");
-                } else if doctrine_fit.name.contains(&set_tag.to_title_case())
-                    || (set_tag == "WARPSPEED"
-                        && !(doctrine_fit.name.contains("Amulet")
-                            || doctrine_fit.name.contains("Hybrid")))
-                    || self.fit.hull == type_id!("Oneiros")
-                    || (set_tag == "AMULET" && doctrine_fit.name.contains("Hybrid"))
-                {
-                    self.tags.insert(set_tag);
-                    // give warning if you have all but slot 10 or wrong slot for that ship
-                    if implantmatch::detect_slot10(self.fit.hull, self.pilot.implants).is_none() {
-                        self.tags.insert("NO-SLOT10");
-                    }
-                    if set_tag == "AMULET" && doctrine_fit.name.contains("Hybrid") {
-                        self.tags.insert("SLOW");
-                    }
                 }
             }
         }
@@ -368,66 +291,11 @@ impl<'a> FitChecker<'a> {
             self.tags.insert("HQ-FC");
         } else if self.pilot.access_keys.contains("waitlist-tag:TRAINEE") {
             self.tags.insert("TRAINEE");
-        }
-
-        // To save space on the XUP card,
-        // don't show these badges for FCs
-        if self.fit.hull == type_id!("Nestor") {
-            if self.badges.contains(&String::from("LOGI")) {
-                self.tags.insert("LOGI");
-            }
-            if self.badges.contains(&String::from("RETIRED-LOGI")) {
-                self.tags.insert("RETIRED-LOGI");
-            }
-        }
-
-        if self.fit.hull == type_id!("Vindicator") && self.badges.contains(&String::from("WEB")) {
-            self.tags.insert("WEB-SPECIALIST");
-        }
-
-        if (self.fit.hull == type_id!("Kronos") || self.fit.hull == type_id!("Paladin"))
-            && self.badges.contains(&String::from("BASTION"))
-        {
-            self.tags.insert("BASTION-SPECIALIST");
-        }
+        }        
     }
 
     fn merge_tags(&mut self) {
-        if self.tags.contains("ELITE-FIT") {
-            if ["WARPSPEED", "HYBRID", "AMULET"]
-                .iter()
-                .any(|e| self.tags.contains(e))
-                || self.tags.contains("SAVIOR")
-            {
-                if self.tags.contains("ELITE-SKILLS") {
-                    self.tags.remove("ELITE-FIT");
-                    self.tags.remove("ELITE-SKILLS");
-                    if self.tags.contains("BASTION-SPECIALIST") {
-                        self.tags.remove("BASTION-SPECIALIST");
-                        self.tags.insert("BASTION");
-                    } else if self.tags.contains("WEB-SPECIALIST") {
-                        self.tags.remove("WEB-SPECIALIST");
-                        self.tags.insert("WEB");
-                    } else {
-                        self.tags.insert("ELITE");
-                    }
-                } else if self.tags.contains("GOLD-SKILLS") {
-                    self.tags.remove("ELITE-FIT");
-                    self.tags.remove("GOLD-SKILLS");
-                    self.tags.insert("ELITE-GOLD");
-                    if self.tags.contains("BASTION-SPECIALIST") {
-                        self.tags.remove("BASTION-SPECIALIST");
-                        self.tags.insert("BASTION");
-                    } else if self.tags.contains("WEB-SPECIALIST") {
-                        self.tags.remove("WEB-SPECIALIST");
-                        self.tags.insert("WEB");
-                    }
-                }
-            } else if self.tags.contains("ANTIGANK") {
-                // ANTIGANK fleet clutter cleanup
-                self.tags.remove("ELITE-FIT");
-            }
-        } else if self.tags.contains("STARTER-SKILLS") || self.tags.contains("STARTER-FIT") {
+        if self.tags.contains("STARTER-SKILLS") || self.tags.contains("STARTER-FIT") {
             self.tags.remove("STARTER-FIT");
             self.tags.remove("STARTER-SKILLS");
             self.tags.insert("STARTER");

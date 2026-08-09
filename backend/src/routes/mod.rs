@@ -1,6 +1,5 @@
 mod announcements;
 mod auth;
-mod badges;
 mod bans;
 mod categories;
 mod commanders;
@@ -30,7 +29,6 @@ pub fn routes() -> Vec<rocket::Route> {
         pilot::routes(),
         history::routes(),
         window::routes(),
-        badges::routes(),
         bans::routes(),
         commanders::routes(),
         modules::routes(),
