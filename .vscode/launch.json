@@ -23,6 +23,9 @@
       "type": "node",
       "request": "launch",
       "name": "User Interface",
+      "env": {
+        "PORT": "7000",
+      },
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run",

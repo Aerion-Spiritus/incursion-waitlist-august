@@ -1,6 +1,3 @@
-<details>
-  <summary>View Readme.md</summary>
-
 # TOP Waitlist Fork
 
 A temporary waitlist for Imperium Incursions.
@@ -97,7 +94,7 @@ The Waitlist has three services (see below). Before starting the front end, both
 8. Run the server
 9. Run the frontend (see section below)
 10. Click on login and complete the SSO workflow with at least one character
-11. Insert a record in the `admin` table to give yourself `council` permissions
+11. Insert a record in the `admin` table to give yourself `Leadership` permissions
 12. Navigate to the Fleet page and "ESI re-auth as FC"
 
 <details>
@@ -114,8 +111,7 @@ The Waitlist has three services (see below). Before starting the front end, both
    CREATE DATABASE IF NOT EXISTS waitlist;
    use waitlist;
    
-   # Now copy and paste and run the mysql.sql script
-
+   # Now copy and paste and run the 202608041231_initial_migration.sql script
    
    # Start backend (step 6-8)
    export DATABASE_ENGINE=mysql
@@ -155,5 +151,3 @@ The Waitlist has three services (see below). Before starting the front end, both
    npm run build
    npm run start
    ```
-</details>
-</details>
