@@ -109,9 +109,6 @@ CREATE TABLE `badge_assignment` (
   CONSTRAINT `grantedById` FOREIGN KEY (`grantedById`) REFERENCES `character` (`id`)
 );
 
--- Seed the database with some starting badges
-INSERT INTO badge (name) VALUES ('BASTION'), ('LOGI'), ('RETIRED-LOGI'), ('WEB');
-
 -- A pilot cannot have Logi and RETIRED-LOGI at once, update our seed
 SELECT @logi_id := id FROM badge WHERE name='LOGI';
 SELECT @retired_logi_id := id FROM badge WHERE name='RETIRED-LOGI';
