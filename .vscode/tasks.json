@@ -14,7 +14,6 @@
       "command": "cargo",
       "args": [
         "build",
-        "--release",
         "--no-default-features",
         "--features=mysql"
       ]
