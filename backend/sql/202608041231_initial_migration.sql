@@ -47,6 +47,17 @@ CREATE TABLE `admin` (
     CONSTRAINT `admin_character` FOREIGN KEY (`granted_by_id`) REFERENCES `character` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+CREATE TABLE alliance_whitelist (
+	`id` bigint PRIMARY KEY,
+  `alliance_id` BIGINT NOT NULL,
+  `issued_at` BIGINT NOT NULL,
+  `issued_by_id` BIGINT NOT NULL,
+	`revoked_at` BIGINT,
+  `revoked_by_id` BIGINT,    
+  CONSTRAINT `whitelisted_by` FOREIGN KEY (`issued_by_id`) REFERENCES `character` (`id`),
+  CONSTRAINT `whitelist_revoked_by` FOREIGN KEY (`revoked_by_id`) REFERENCES `character` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 CREATE TABLE `alt_character` (
   `account_id` bigint NOT NULL,
   `alt_id` bigint NOT NULL,

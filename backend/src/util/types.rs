@@ -61,3 +61,11 @@ pub struct Corporation {
     pub alliance: Option<Alliance>,
     pub last_updated: Option<i64>,
 }
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct Whitelist {
+    pub id: Option<i64>,
+    pub entity: Option<Entity>,
+    pub issued_at: i64,
+    pub issued_by: Option<Character>,
+}
