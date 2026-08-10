@@ -106,7 +106,7 @@ export function NavLinks({ whoami }) {
           Fleet
         </Links>
       )}
-      {whoami && whoami.access["waitlist-tag:HQ-FC"] && (
+      {whoami && whoami.access["waitlist-tag:TRAINEE"] && (
         <Links exact to="/fc">
           FC
         </Links>

@@ -192,6 +192,7 @@ fn build_access_levels() -> BTreeMap<String, BTreeSet<String>> {
             "fit-view",
             "skill-view",
             "waitlist-manage",
+            "pilot-view",
             "notes-view",                        
         ],
     );
@@ -204,8 +205,7 @@ fn build_access_levels() -> BTreeMap<String, BTreeSet<String>> {
             // HQ-FC Badge
             "waitlist-tag:HQ-FC",
             
-            // View Other Pilots
-            "pilot-view",
+            // View Other Pilots            
             "fit-history-view",
             "skill-history-view",
             "fleet-activity-view",

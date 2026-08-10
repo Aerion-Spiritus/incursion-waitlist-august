@@ -1,4 +1,5 @@
 # These tags are visible to third-party pilots without FC roles
 
 public_tags:
+  - dummy-data
 

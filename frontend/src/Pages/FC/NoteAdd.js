@@ -40,10 +40,11 @@ export function NoteAdd() {
         value={note}
         rows="5"
         cols="60"
+        placeholder="Reminder: Notes cannot be removed!"
       />
 
-      <p>
-        <em>Remember that notes cannot be removed!</em>
+      <p style={{marginBottom: '1rem' }}>
+        <em>Min 20 characters.</em>
       </p>
       <InputGroup>
         <Button
