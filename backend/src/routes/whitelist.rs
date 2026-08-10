@@ -3,8 +3,8 @@ use crate::{
         madness::Madness, types::{Character, Entity, Whitelist},
     },
 };
-
 use rocket::serde::json::Json;
+use serde::Deserialize;
 use sqlx::types::chrono::Utc;
 
 
@@ -57,6 +57,45 @@ async fn list(
     return Ok(Json(whitelist));
 }
 
+#[derive(Deserialize)]
+struct WhitelistRequest {
+    id: i64,
+    name: String,
+}
+
+#[post("/api/v1/whitelist", data = "<req_body>")]
+async fn create(
+    app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
+    req_body: Json<WhitelistRequest>,
+) -> Result<&'static str, Madness> {
+    account.require_access("whitelist-manage")?;
+
+    let now = Utc::now().timestamp();
+
+    sqlx::query!(
+        "INSERT IGNORE INTO alliance (id, name)
+        VALUES (?, ?)",
+        req_body.id,
+        req_body.name
+    )
+    .execute(app.get_db())
+    .await?;
+
+    sqlx::query!(
+        "INSERT INTO alliance_whitelist (alliance_id, issued_at, issued_by_id)
+        VALUES (?, ?, ?)",
+        req_body.id,
+        now,
+        account.id
+    )
+    .execute(app.get_db())
+    .await?;
+
+    return Ok("Ok");
+}
+
+
 #[delete("/api/v1/whitelist/<whitelist_id>")]
 async fn revoke(
     app: &rocket::State<Application>,
@@ -82,7 +121,7 @@ async fn revoke(
 pub fn routes() -> Vec<rocket::Route> {
     routes![
         list,   // GET      /api/v1/whitelist
-        //create, // POST     /api/v1/whitelist
+        create, // POST     /api/v1/whitelist
         revoke  // DELETE   /api/v1/whitelist/<id>
     ]
 }

@@ -61,7 +61,7 @@ const AddButton = ({ handleRefreshData }) => {
       apiCall(`/api/v1/whitelist`, {
         method: 'POST',
         json: {
-          entity
+          ...entity
         }
       })
       .then(() => {
