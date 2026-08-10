@@ -141,6 +141,8 @@ async fn callback(
         .update_character_affiliation(character_id)
         .await?;
 
+    app.whitelist_service.compliance_check(character_id).await?;
+
     if let Some(ban) = app.ban_service.character_bans(character_id).await? {
         let ban = ban.first().unwrap();
 
