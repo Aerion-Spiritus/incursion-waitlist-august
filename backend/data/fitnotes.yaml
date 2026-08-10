@@ -7,6 +7,10 @@ notes:
     description: >
       There are limited spots for logistics ships in fleet. Pilots are encouraged to bring a [DPS option](/fits?Tier=DPS) to focus.
 
+  - name: Newbee
+    description: >
+      Please prioritise training a Marauder before TII guns.      
+
   # Ship specific notes
   - name: Incursions 0.0 Apocalypse Newbee 
     description: >
