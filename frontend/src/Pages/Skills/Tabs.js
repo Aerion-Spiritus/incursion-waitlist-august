@@ -74,13 +74,12 @@ const Tabs = ({ selectedHull, ships }) => {
   const orderedShips = useMemo(
     () => {
       const sort_order = [
-        'Megathron',
-        'Vindicator',
-        'Kronos',
-        'Apocalypse Navy Issue',
-        'Nightmare',
+        'Maller',
+        'Apocalypse',
         'Paladin',
-        'Oneiros',
+        'Kronos',
+        'Vindicator',
+        'Bhaalgorn',
         'Nestor',
         'Eos',
         'Damnation'

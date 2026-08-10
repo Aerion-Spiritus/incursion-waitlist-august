@@ -16,10 +16,10 @@ const Skills = () => {
   const authContext = useContext(AuthContext);
   const queryParams = new URLSearchParams(useLocation().search);
 
-  // Make 'basic' the default mastery to display if parameter is not specified.
-  // Alias 'basic' to 'min', as that is its name in the object returned by the backend.
-  const defaultMastery = "basic"
-  const mastery = (queryParams.get("mastery") ?? defaultMastery).toLowerCase() === "basic" ? "min" : queryParams.get("mastery")
+  // Make 'required' the default mastery to display if parameter is not specified.
+  // Alias 'required' to 'min', as that is its name in the object returned by the backend.
+  const defaultMastery = "required"
+  const mastery = (queryParams.get("mastery") ?? defaultMastery).toLowerCase() === "required" ? "min" : queryParams.get("mastery")
 
   if (!authContext) {
     return <Spinner />
@@ -49,8 +49,9 @@ const SkillsModal = ({ character, hull, open, setOpen }) => {
 const Page = ({ characterId, hull, mastery }) => {
   const [ basicInfo ] = useApi(`/api/pilot/info?character_id=${characterId}`);
   const [ skills ] = useApi(`/api/skills?character_id=${characterId}`);
-
+  
   usePageTitle(`${basicInfo?.name}'s Skills`);
+
   return (
     <>
       <Tabs selectedHull={hull} ships={skills?.requirements} />

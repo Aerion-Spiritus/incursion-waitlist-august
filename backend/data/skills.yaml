@@ -48,6 +48,7 @@ categories:
     - Medium Drone Operation
     - Heavy Drone Operation
     - Repair Drone Operation
+    - Minmatar Drone Specialization
   Engineering:
     - Thermodynamics
     - Capacitor Management
@@ -69,8 +70,8 @@ categories:
     - Repair Systems
     - Shield Emission Systems
     - Target Painting
-  Electronic Systems:
     - Cloaking
+    - Energy Pulse Weapons
   Targeting:
     - Target Management
     - Advanced Target Management
@@ -238,8 +239,6 @@ requirements:
       elite: 5
     Advanced Target Management:
       elite: 3
-    Science:
-      min: 4
     Spaceship Command:
       min: 5
     Armor Rigging:
