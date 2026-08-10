@@ -69,6 +69,8 @@ categories:
     - Repair Systems
     - Shield Emission Systems
     - Target Painting
+  Electronic Systems:
+    - Cloaking
   Targeting:
     - Target Management
     - Advanced Target Management
@@ -119,17 +121,30 @@ requirements:
       min: 4
     Fleet Command:
       elite: 4
+    Command Ships:
+      min: 4
+      elite: 5
     Command Burst Specialist:
       min: 4
       elite: 5
+    Frequency Modulation:
+      min: 3
+      elite: 4
+    Long Distance Jamming:
+      min: 3
+      elite: 4
+    Sensor Linking:
+      min: 4
+    Cybernetics:
+      elite: 5
 
-  _boosts_armour: &boosts_armored 
+  _boosts_armored: &boosts_armored 
     Armored Command:
       elite: 5
     Armored Command Specialist:
       min: 4
       elite: 5
-        
+  
   _boosts_information: &boosts_information
     Information Command:
       min: 5
@@ -144,7 +159,6 @@ requirements:
       min: 4
       elite: 5
 
-
   # Generic skills required by newbee ships
   _newbee: &newbee
     EM Armor Compensation:
@@ -158,6 +172,9 @@ requirements:
 
   # Generic skills required by non-newbee ships
   _generic: &generic
+    Armor Layering:
+      min: 3
+      elite: 4
     EM Armor Compensation:
       min: 4
       elite: 5
@@ -172,6 +189,84 @@ requirements:
       elite: 5
     Hull Upgrades:
       min: 5
+    Mechanics:
+      min: 3
+    Acceleration Control:
+      min: 3
+      elite: 5
+    Evasive Maneuvering:
+      min: 4
+      elite: 5
+    High Speed Maneuvering:
+      min: 3
+      elite: 4
+    Navigation:
+      min: 5
+    Warp Drive Operation:
+      min: 4
+      elite: 5
+    Advanced Drone Avionics:
+      min: 3
+      elite: 4
+    Drone Avionics:
+      min: 3
+      elite: 4
+    Drone Durability:
+      min: 3
+      elite: 4
+    Drone Navigation:
+      min: 4
+      elite: 5
+    Drone Sharpshooting:
+      min: 4
+      elite: 5
+    Drones:
+      min: 5
+    Light Drone Operation:
+      min: 4
+      elite: 5
+    Minmatar Drone Specialization:
+      elite: 2
+    Thermodynamics:
+      min: 3
+      elite: 4
+    Signature Analysis:
+      min: 4
+      elite: 5
+    Target Management:
+      min: 4
+      elite: 5
+    Advanced Target Management:
+      elite: 3
+    Science:
+      min: 4
+    Spaceship Command:
+      min: 5
+    Armor Rigging:
+      min: 3
+      elite: 4
+    Jury Rigging:
+      min: 3
+    Cloaking:
+      min: 1
+      elite: 3
+    Electronic Warfare:
+      min: 4
+    Micro Jump Drive Operation:
+      min: 2
+      elite: 4
+    Capacitor Management:
+      min: 4
+      elite: 5
+    Capacitor Systems Operation:
+      min: 4
+      elite: 5
+    CPU Management:
+      min: 4
+      elite: 5
+    Power Grid Management:
+      min: 4
+      elite: 5
 
   _marauder: &marauder
     Advanced Weapon Upgrades:
@@ -180,6 +275,35 @@ requirements:
       min: 5
     Marauders:
       min: 1
+      elite: 5
+    Energy Pulse Weapons:
+      min: 4
+    Capacitor Emission Systems:
+      min: 4
+    Target Management:
+      min: 5
+    Advanced Target Management:
+      min: 3
+
+  _gunnery: &gunnery
+    Controlled Bursts:
+      min: 3
+      elite: 5
+    Rapid Firing:
+      min: 3
+      elite: 5
+    Sharpshooter:
+      min: 3
+      elite: 5
+    Surgical Strike:
+      min: 3
+      elite: 5
+    Trajectory Analysis:
+      min: 3
+      elite: 5
+    Motion Prediction:
+      min: 4
+      elite: 5
 
   # Start of per-ship skills
   Maller:
@@ -200,6 +324,16 @@ requirements:
       min: 1
     Trajectory Analysis:
       min: 1    
+    Gunnery:
+      min: 4
+    CPU Management:
+      min: 3
+    Power Grid Management:
+      min: 1
+    Navigation:
+      min: 3
+    Afterburner:
+      min: 3
 
   Apocalypse:
     <<: [*newbee]
@@ -231,45 +365,129 @@ requirements:
       min: 2
 
   Paladin:
-    <<: [*generic, *marauder]
+    <<: [*generic, *marauder, *gunnery]
     Amarr Battleship:
       min: 5
+    Large Energy Turret:
+      min: 4
+      elite: 5
+    Large Pulse Laser Specialization:
+      elite: 5
+    Radar Sensor Compensation:
+      min: 4
 
   Kronos:
-    <<: [*generic, *marauder]
+    <<: [*generic, *marauder, *gunnery]
     Gallente Battleship:
       min: 5
+    Large Hybrid Turret:
+      min: 4
+      elite: 5
+    Large Blaster Specialization:
+      elite: 5
+    Magnetometric Sensor Compensation:
+      min: 4
+    Propulsion Jamming:
+      min: 4
 
   Vindicator:
-    <<: [*generic]
+    <<: [*generic, *gunnery]
     Gallente Battleship:
       min: 4
     Minmatar Battleship:
       min: 4
       elite: 5
+    Large Hybrid Turret:
+      min: 4
+      elite: 5
+    Large Blaster Specialization:
+      elite: 4
+    Propulsion Jamming:
+      min: 4
+    Magnetometric Sensor Compensation:
+      min: 3
+      elite: 4
+    Drone Avionics:
+      elite: 5
+    Heavy Drone Operation:
+      elite: 4
 
   Bhaalgorn:
-    <<: [*generic]
+    <<: [*generic, *gunnery]
     Amarr Battleship:
       min: 4
+    Minmatar Battleship:
+      min: 4
+    Propulsion Jamming:
+      min: 3
+      elite: 4
+    Weapon Upgrades:
+      min: 3
+    Radar Sensor Compensation:
+      min: 3
+      elite: 4
+    Large Energy Turret:
+      min: 4
+      elite: 5
+    Large Pulse Laser Specialization:
+      elite: 4
+    Drone Avionics:
+      elite: 5
+    Capacitor Emission Systems:
+      min: 3
+      elite: 4
 
   Nestor:
     <<: [*generic]
     Amarr Battleship:
       min: 4
+      elite: 5
     Gallente Battleship:
       min: 1
+      elite: 4
+    Repair Drone Operation:
+      min: 3
+    Drone Avionics:
+      elite: 5
+    Capacitor Management:
+      min: 5
+    Capacitor Systems Operation:
+      min: 5
+    Remote Armor Repair Systems:
+      min: 5
+    Shield Emission Systems:
+      min: 3
+    Magnetometric Sensor Compensation:
+      min: 4
+      elite: 5
 
   Eos:
     <<: [*generic, *boosts_generic, *boosts_armored, *boosts_skirmish]
     Gallente Battlecruiser:
       min: 5
+    Frequency Modulation:
+      min: 4
+      elite: 5
+    Long Distance Jamming:
+      min: 4
+      elite: 5
+    Magnetometric Sensor Compensation:
+      min: 3
+      elite: 4
 
   Damnation:
     <<: [*generic, *boosts_generic, *boosts_armored, *boosts_information]
     Amarr Battlecruiser:
-      min: 5    
-
+      min: 5
+    Frequency Modulation:
+      min: 3
+      elite: 5
+    Long Distance Jamming:
+      min: 3
+      elite: 5
+    Radar Sensor Compensation:
+      min: 3
+      elite: 4
 
 other:
   # These skills are tracked by the skill_updater in addition
