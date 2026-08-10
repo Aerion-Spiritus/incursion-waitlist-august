@@ -19,7 +19,7 @@ jobs:
       - name: Docker Login
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
 
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v7
       - name: Docker Build
         working-directory: ./frontend
         run: docker build -t $COMPONENT .

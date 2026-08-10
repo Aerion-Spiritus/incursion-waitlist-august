@@ -41,7 +41,7 @@ jobs:
           sudo ss -tlpn | grep 3306
 
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
 
       - name: Docker Build
         working-directory: ./backend
