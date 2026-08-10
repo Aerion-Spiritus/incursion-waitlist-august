@@ -161,4 +161,30 @@ const FilterComponents = ({ filters, filterOptions, onChange, onClear }) => {
   return <>Filter</>
 }
 
-export { AddButton, FilterComponents };
+const RevokeButton = ({ id, handleRefreshData }) => {
+  const toastContext = useContext(ToastContext);
+
+  const deAuthorise = async (id) => {
+    return await apiCall(`/api/v1/whitelist/${id}`, {
+      method: 'DELETE'
+    });
+  }
+  
+  const handleDelete = (e) => {
+    e.preventDefault();
+
+    errorToaster(
+      toastContext,
+      deAuthorise(id).then(handleRefreshData)
+    );
+  }
+
+  return <Button
+    variant='danger'
+    onClick={handleDelete}
+  >
+    Revoke
+  </Button>
+}
+
+export { AddButton, FilterComponents, RevokeButton };

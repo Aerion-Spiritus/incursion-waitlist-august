@@ -4,7 +4,7 @@ import { AllianceName, CharacterName } from "../../Components/EntityLinks";
 import { Header } from "../../Components/Page";
 import { formatDatetime } from "../../Util/time";
 import { usePageTitle } from "../../Util/title";
-import { AddButton, FilterComponents } from "./whitelists/TableControls";
+import { AddButton, FilterComponents, RevokeButton } from "./whitelists/TableControls";
 import { AuthContext } from "../../contexts";
 import styled from "styled-components";
 import { useApi } from "../../api";
@@ -63,37 +63,49 @@ const special_sort = (charA, charB) => {
   else return 0;
 };
 
-const columns = [
-  {
-    name:"Alliance",
-    sortable: true,   
-    sortFunction:  (rowA, rowB) => special_sort(rowA.entity.name, rowB.entity.name),
-    grow: 2,
-    selector: (row) => <AllianceName id={row.entity.id} name={row.entity.name} noLink />
-  },
-  {
-    name: "Issued By",
-    sortable: true,
-    sortFunction: (rowA, rowB) => special_sort(rowA.issued_by, rowB.issued_by),
-    hide: "md",
-    grow: 1,
-    selector: (row) => <CharacterName {...row.issued_by} />,
-  },
-  {
-    name: "Issued At",
-    hide: "sm",
-    grow: 1,
-    selector: (row) => formatDatetime(new Date(row.issued_at * 1000)),
-  },
-  // todo: remove button
-];
-
 const WhitelistPage = () => {
   const authContext = useContext(AuthContext);
   const [ data, refreshData ] = useApi('/api/v1/whitelist');
   usePageTitle("Whitelist");
-  console.log(data && data[0].entity.id)
-  const TableHeader = useMemo(() => {    
+  
+  const columns = [
+    {
+      name:"Alliance",
+      sortable: true,   
+      sortFunction:  (rowA, rowB) => special_sort(rowA.entity.name, rowB.entity.name),
+      grow: 2,
+      selector: (row) => <AllianceName id={row.entity.id} name={row.entity.name} noLink />
+    },
+    {
+      name: "Issued By",
+      sortable: true,
+      sortFunction: (rowA, rowB) => special_sort(rowA.issued_by, rowB.issued_by),
+      hide: "md",
+      grow: 1,
+      selector: (row) => <CharacterName {...row.issued_by} />,
+    },
+    {
+      name: "Issued At",
+      hide: "sm",
+      grow: 1,
+      selector: (row) => formatDatetime(new Date(row.issued_at * 1000)),
+    },
+    {
+      name: "",
+      compact: true,
+      grow: 1,
+      minWidth: "60",
+      selector: (row) => 
+        authContext && authContext.access['whitelist-manage'] && (
+          <RevokeButton
+            id={row.id}
+            handleRefreshData={refreshData}
+          />
+        )
+    }
+  ];
+
+  const TableHeader = useMemo(() => { 
     return (
       <TableControls>
         <FilterComponents />

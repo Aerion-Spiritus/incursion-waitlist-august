@@ -57,10 +57,32 @@ async fn list(
     return Ok(Json(whitelist));
 }
 
+#[delete("/api/v1/whitelist/<whitelist_id>")]
+async fn revoke(
+    app: &rocket::State<Application>,
+    account: AuthenticatedAccount,
+    whitelist_id: i64,
+) -> Result<&'static str, Madness> {
+    account.require_access("whitelist-manage")?;
+
+    let now = Utc::now().timestamp();
+    
+    sqlx::query!(
+        "UPDATE alliance_whitelist SET revoked_at=?, revoked_by_id=? WHERE id=?",
+        now,
+        account.id,
+        whitelist_id
+    )
+    .execute(app.get_db())
+    .await?;
+
+    return Ok("Ok");
+}
+
 pub fn routes() -> Vec<rocket::Route> {
     routes![
         list,   // GET      /api/v1/whitelist
         //create, // POST     /api/v1/whitelist
-        //revoke  // DELETE   /api/v1/whitelist/<id>
+        revoke  // DELETE   /api/v1/whitelist/<id>
     ]
 }
