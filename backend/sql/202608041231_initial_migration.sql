@@ -48,7 +48,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE alliance_whitelist (
-	`id` bigint PRIMARY KEY,
+	`id` bigint PRIMARY KEY AUTO_INCREMENT,
   `alliance_id` BIGINT NOT NULL,
   `issued_at` BIGINT NOT NULL,
   `issued_by_id` BIGINT NOT NULL,
