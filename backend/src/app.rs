@@ -6,6 +6,7 @@ pub struct Application {
     pub config: Config,
     pub affiliation_service: crate::core::affiliation::AffiliationService,
     pub ban_service: crate::core::ban::BanService,
+    pub whitelist_service: crate::core::whitelist::WhitelistService,
     pub esi_client: crate::core::esi::ESIClient,
     pub sse_client: crate::core::sse::SSEClient,
     pub token_secret: Vec<u8>,
@@ -22,6 +23,9 @@ pub fn new(db: Arc<crate::DB>, config: Config) -> Application {
             ),
         ),
         ban_service: crate::core::ban::BanService::new(db.clone()),
+        whitelist_service: crate::core::whitelist::WhitelistService::new(
+            db.clone()
+        ),
         esi_client: crate::core::esi::ESIClient::new(
             db.clone(),
             config.esi.client_id.clone(),

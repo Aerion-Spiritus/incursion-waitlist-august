@@ -237,7 +237,8 @@ fn build_access_levels() -> BTreeMap<String, BTreeSet<String>> {
         "Leadership",
         vec![
             "bans-manage",
-            
+            "whitelist-manage",
+
             // Manage other FCs
             "commanders-manage:Senior Fleet Commander",
             "commanders-manage:Leadership"

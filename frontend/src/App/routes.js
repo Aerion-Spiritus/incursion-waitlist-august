@@ -21,6 +21,7 @@ import { Statistics } from "../Pages/FC/Statistics";
 import { Waitlist } from "../Pages/Waitlist";
 
 import { E401, E403, E404 } from "../Pages/Errors";
+import WhitelistPage from "../Pages/FC/Whitelist";
 
 const AuthenticatedRoute = ({ component, loginRequired = false, access = null }) => {
   const authContext = useContext(AuthContext);
@@ -97,6 +98,9 @@ export function Routes() {
       </Route>
       <Route exact path="/fc/reports">
         <AuthenticatedRoute component={<ReportsPage />} access="reports-view" />
+      </Route>
+      <Route exact path="/fc/whitelist">
+        <AuthenticatedRoute component={<WhitelistPage />} access="whitelist-manage" />
       </Route>
 
       {/* Auth Routes: Login, Callback, Logout */}

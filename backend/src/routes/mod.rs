@@ -19,6 +19,7 @@ mod sse;
 mod statistics;
 mod waitlist;
 mod window;
+mod whitelist;
 
 pub fn routes() -> Vec<rocket::Route> {
     [
@@ -42,7 +43,8 @@ pub fn routes() -> Vec<rocket::Route> {
         notes::routes(),
         fitcheck::routes(),
         fittings::routes(),
-        reports::routes()
+        reports::routes(),
+        whitelist::routes(),
     ]
     .concat()
 }

@@ -123,6 +123,9 @@ async fn xup_multi(
     for character_id in character_ids {
         authorize_character(app.get_db(), &account, character_id, None).await?;
 
+        // Error out if a character does not belong to a whitelist alliance
+        app.whitelist_service.compliance_check(character_id).await?;
+
         if let Some(ban) = app.ban_service.character_bans(character_id).await? {
             let first = ban.first().unwrap();
             let entity = first.entity.as_ref().unwrap();

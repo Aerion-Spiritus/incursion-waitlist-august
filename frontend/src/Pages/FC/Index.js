@@ -9,7 +9,8 @@ import {
   faUserShield,
   faBullhorn,
   faBan,
-  faPoll
+  faPoll,
+  faIdBadge
 } from "@fortawesome/free-solid-svg-icons";
 import { usePageTitle } from "../../Util/title";
 
@@ -38,9 +39,12 @@ export function FCMenu() {
     <>
       <PageTitle>FC Dashboard</PageTitle>
       <CardArray>
+        {authContext && authContext.access["reports-view"] && (
+          <GuideCard slug="reports" name="Activity Reports" icon={faPoll} />
+        )}
         {authContext && authContext.access["waitlist-tag:HQ-FC"] && (
           <GuideCard slug="announcements" name="Announcements" icon={faBullhorn} />
-        )}
+        )}        
         {authContext && authContext.access["bans-manage"] && (
           <GuideCard slug="bans" name="Bans" icon={faBan} />
         )}
@@ -50,9 +54,9 @@ export function FCMenu() {
         {authContext && authContext.access["stats-view"] && (
           <GuideCard slug="stats" name="Statistics" icon={faChartLine} />
         )}
-        {authContext && authContext.access["reports-view"] && (
-          <GuideCard slug="reports" name="Activity Reports" icon={faPoll} />
-        )}
+        {authContext && authContext.access["whitelist-manage"] && (
+          <GuideCard slug="whitelist" name="Whitelist" icon={faIdBadge} />
+        )}        
       </CardArray>
     </>
   );
