@@ -197,9 +197,9 @@ async fn public_directory(
 async fn assignable(account: AuthenticatedAccount) -> Result<Json<Vec<&'static str>>, Madness> {
     account.require_access("commanders-manage")?;
 
-    let role_order = vec!["Trainee", "FC", "Instructor", "Leadership"];
+    let role_order = vec!["Trainee", "Fleet Commander", "Senior Fleet Commander", "Leadership"];
 
-    let mut options = Vec::new();
+    let mut options: Vec<&str> = Vec::new();
     for scope in account.access.into_iter() {
         if scope.contains("commanders-manage:") {
             // 14 is the index of ":".

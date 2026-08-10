@@ -94,7 +94,7 @@ const TeamDirectory = () => {
             })}
           </div>
 
-          <H3>Full FCs:</H3>
+          <H3>Fleet Commanders:</H3>
           <div style={{ margin: "10px 0px", display: "flex", flexWrap: "wrap" }}>
             {fullFc?.map((character, key) => {
               return (

@@ -177,54 +177,69 @@ fn build_access_levels() -> BTreeMap<String, BTreeSet<String>> {
         "user",
         "Trainee",
         vec![
+            // Trainee Badge
+            "waitlist-tag:TRAINEE",
+            "commanders-view",
+
+            // Waitlist Actions
             "fleet-configure",
             "fleet-invite",
             "fleet-view",
-            "pilot-view",
             "waitlist-view",
-            "waitlist-tag:TRAINEE",
+            "waitlist-edit",
+
+            // X-UP Managers
             "fit-view",
             "skill-view",
-            "waitlist-manage"
+            "waitlist-manage",
+            "notes-view",                        
         ],
     );
+
     build_level(
         &mut result,
         "Trainee",
-        "FC",
+        "Fleet Commander",
         vec![
-            "bans-manage",
-            "badges-manage",
-            "commanders-view",
-            "fleet-activity-view",
-            "fleet-history-view",
-            "fit-history-view",
-            "search",
-            "skill-history-view",
-            "waitlist-edit",
-            "stats-view",
+            // HQ-FC Badge
             "waitlist-tag:HQ-FC",
-            "notes-view",
-            "notes-add",
+            
+            // View Other Pilots
+            "pilot-view",
+            "fit-history-view",
+            "skill-history-view",
+            "fleet-activity-view",
+            "search",
+            "notes-add"  
         ],
     );
+
     build_level(
         &mut result,
-        "FC",
-        "Instructor",
+        "Fleet Commander",
+        "Senior Fleet Commander",
         vec![
+            
+            "fleet-history-view",
+            "stats-view",
+            "reports-view",
+
+            // Manage other FCs
             "commanders-manage",
             "commanders-manage:Trainee",
-            "commanders-manage:FC",
-            "reports-view"
+            "commanders-manage:Fleet Commander",            
         ],
     );
+
     build_level(
         &mut result,
-        "Instructor",
+        "Senior Fleet Commander",
         "Leadership",
         vec![
-            "commanders-manage:Instructor",
+            "bans-manage",
+            
+            // Manage other FCs
+            "commanders-manage:Senior Fleet Commander",
             "commanders-manage:Leadership"
         ],
     );
