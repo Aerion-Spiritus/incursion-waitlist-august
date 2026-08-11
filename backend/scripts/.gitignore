@@ -1,0 +1,2 @@
+# Ignore the temporary directory used to build the SDE sqlite DB
+temporary/
